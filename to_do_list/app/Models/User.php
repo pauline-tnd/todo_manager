@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
 
+
+    protected $table = 'users';
+    protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
@@ -49,4 +53,23 @@ class User extends Authenticatable
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+    protected function todos()
+    {
+        return $this->hasMany(ToDo::class);
+    }
+
+    // ----------- test -----------
+    // php artisan tinker
+
+    // use App\Models\User;
+
+    // $user = User::create([
+    // 'name' => 'user1',
+    // 'email' => 'user1@gmail.com',
+    // 'password' => bcrypt('123'),
+    // ]);
+
+    // $user->id;
+
 }

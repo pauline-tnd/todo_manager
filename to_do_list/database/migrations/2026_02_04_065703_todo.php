@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('todo', function (Blueprint $table) {
+        Schema::create('todos', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('user_id')->foreign()
+            $table->integer('user_id')->unsigned()
+                    ->foreign()
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade')
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('todo');
+        Schema::dropIfExists('todos');
     }
 };
