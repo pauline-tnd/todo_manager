@@ -19,12 +19,12 @@ class ToDo extends Model
         'status',
         'category',
         'due_date',
-        // 'user_id',
+        'user_id',
     ];
 
     protected $casts = [
-        'status' => 'boolean',
-        'due_date' => 'date',
+        'status' => 'string',
+        'due_date' => 'datetime',
         'is_deleted' => 'boolean'
     ];
 
