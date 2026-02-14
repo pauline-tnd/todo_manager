@@ -17,11 +17,12 @@ class ToDoController extends Controller
         ], 200);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $user_id = Auth::user()->id;
         $todo = ToDo::where('user_id', $user_id)->find($id);
-        
-        if(!$todo){
+
+        if (!$todo) {
             return response()->json([
                 'message' => 'Todo not found'
             ], 404);
@@ -32,7 +33,8 @@ class ToDoController extends Controller
         ], 200);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $user_id = Auth::user()->id;
         // return response()->json([
         //     'user id : ' => Auth::user()->id
@@ -42,7 +44,7 @@ class ToDoController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'category' => 'nullable|string|max:255',
-            'due_date' => 'nullable|dateTime|after_or_equal:today',
+            'due_date' => 'nullable|date|after_or_equal:today',
         ]);
 
         $validated['user_id'] = $user_id;
@@ -57,11 +59,12 @@ class ToDoController extends Controller
         ], 200);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $user_id = Auth::user()->id;
         $todo = ToDo::where('user_id', $user_id)->find($id);
-        
-        if(!$todo){
+
+        if (!$todo) {
             return response()->json([
                 'message' => 'Todo not found'
             ], 404);
@@ -71,7 +74,7 @@ class ToDoController extends Controller
             'title' => 'sometimes|string|max:255',
             'description' => 'sometimes|string|max:255',
             'category' => 'sometimes|string|max:255',
-            'due_date' => 'sometimes|dateTime|after_or_equal:today',
+            'due_date' => 'sometimes|date|after_or_equal:today',
             'status' => 'sometimes|in:on progress,late,done',
         ]);
         $todo->update($validated);
@@ -82,17 +85,20 @@ class ToDoController extends Controller
         ], 200);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $user_id = Auth::user()->id;
         $todo = ToDo::where('user_id', $user_id)->find($id);
-        
-        if(!$todo){
+
+        if (!$todo) {
             return response()->json([
                 'message' => 'Todo not found'
             ], 404);
         }
 
-        $todo->delete();
+        $todo['is_deleted'] = true;
+        $todo->save();
+
         return response()->json([
             'message' => 'Todo deleted successfully'
         ], 200);

@@ -12,7 +12,7 @@ class ToDo extends Model
 
     protected $table = 'todos'; // default table = model + 's' -> todos
     protected $primaryKey = 'id'; // default primary key = id
-    
+
     protected $fillable = [
         'title',
         'description',

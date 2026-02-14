@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('user_id')
-                    ->constrained()
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['on progress', 'late', 'done'])->default('on progress');
             $table->string('category')->nullable();
 
-            $table->dateTime('due_date')->nullable();
+            $table->dateTimeTz('due_date')->nullable();
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });

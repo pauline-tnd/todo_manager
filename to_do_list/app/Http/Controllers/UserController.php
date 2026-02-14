@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function show(Request $request){
+    public function show(Request $request)
+    {
         return response()->json([
             'message' => 'User show successfully',
             'data' => $request->user()
         ], 200);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $user = $request->user();
 
         $validated = $request->validate([
@@ -30,7 +33,8 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request)
+    {
         $user = $request->user();
 
         $validated = $request->validate([
@@ -43,7 +47,7 @@ class UserController extends Controller
                 'message' => 'Current password is incorrect',
             ], 400);
         }
-        
+
         $user->update([
             'password' => Hash::make($validated['new_password'])
         ]);
@@ -53,8 +57,9 @@ class UserController extends Controller
             'data' => $user
         ], 200);
     }
-    
-    public function destroy(Request $request){
+
+    public function destroy(Request $request)
+    {
         $user = $request->user();
         $token = $user->currentAccessToken();
 
