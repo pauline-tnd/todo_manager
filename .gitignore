@@ -1,0 +1,45 @@
+# ----- Backend ------
+
+# Logs
+*.log
+
+# Mac / Windows
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+.env.backup
+.env.production
+
+# PHP / Laravel cache
+backend/.phpactor.json
+backend/.phpunit.result.cache
+backend/.phpunit.cache
+
+# IDE
+.fleet
+.idea
+.nova
+.vscode
+.zed
+
+# Composer
+backend/auth.json
+backend/vendor
+
+# Node (if backend uses Vite)
+backend/node_modules
+backend/public/build
+backend/public/hot
+
+# Storage
+backend/public/storage
+backend/storage/*.key
+backend/storage/pail
+
+# Homestead
+backend/Homestead.json
+backend/Homestead.yaml
