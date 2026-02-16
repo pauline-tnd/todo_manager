@@ -1,0 +1,602 @@
+:root {
+  --purple: #9650c5;
+  --dark-purple: rgb(118, 8, 192);
+  --light-purple: #b073d9;
+  --cyan: #5bd2d2;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Container & Background */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Darker more premium background base to make colors pop */
+  background-color: #0f172a; 
+}
+
+.background-gradient {
+  position: absolute;
+  inset: 0;
+  /* Refined gradient for depth */
+  background: radial-gradient(circle at top left, var(--light-purple), transparent 70%),
+              radial-gradient(circle at bottom right, var(--cyan), transparent 70%),
+              linear-gradient(135deg, #0f172a 0%, var(--dark-purple) 100%);
+  overflow: hidden;
+}
+
+/* Main Card - Glassmorphism */
+.login-card {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1000px; /* Slightly tighter max-width for better proportions */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 30px; /* Modern large radius */
+  overflow: hidden;
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on the whole card for interactivity */
+.login-card:hover {
+  box-shadow: 
+    0 35px 60px -15px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+@media (max-width: 900px) {
+  .login-card {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+}
+
+/* Left Panel - Login Form */
+.login-panel {
+  /* Creating a subtle separation while maintaining glass feel */
+  /* Darker background as requested */
+  background: rgba(5, 8, 16, 0.85); 
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  /* subtle glow to match the logo shine */
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .login-panel {
+    padding: 3rem 2rem;
+  }
+}
+
+/* Logo Section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: rgba(245, 245, 245, 0.85);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.25rem;
+  box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+}
+
+.logo-text h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  /* font-family: 'Poppins', sans-serif; */
+  background: linear-gradient(135deg, rgb(200, 200, 200), white, rgb(200, 200, 200));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Enhanced glow */
+  text-shadow: 0 0 15px rgba(103, 227, 255, 0.6);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.logo-text p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 4px 0 0 0;
+  font-weight: 500;
+}
+
+/* Avatar Section */
+.avatar-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.user-avatar {
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.user-avatar svg {
+  width: 45px;
+  height: 45px;
+  color: #cbd5e1;
+  stroke-width: 1.5;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  color: #64748b;
+  transition: color 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3.5rem;
+  /* Dark transparent background for inputs */
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px; /* Smooth corners */
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Focus State - Matching the logo glow */
+.input-group:focus-within .input-icon {
+  color: #79c4c4; /* #5bd2d2 */
+  filter: drop-shadow(0 0 5px rgba(110, 164, 164, 0.15));
+}
+
+.form-input:focus {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: #6ea4a4; /* #5bd2d2 */
+  box-shadow: 0 0 15px rgba(132, 240, 240, 0.5);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #64748b;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle:hover {
+  color: #cbd5e1;
+}
+
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Login Button */
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  background-color: var(--purple);
+  /* background: linear-gradient(135deg, #9e65c4f3, #c4aaff, #9e65c4f3); */
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Button Shine Effect */
+.login-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.login-button:hover::after {
+  left: 100%;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 25px rgba(171, 184, 184, 0.2);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+/* Form Options */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.remember-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.remember-checkbox:hover {
+  color: #cbd5e1;
+}
+
+.remember-checkbox input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #64748b;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.remember-checkbox input:checked {
+  background: rgb(134, 214, 248);
+  border-color: rgb(134, 214, 248);
+}
+
+.remember-checkbox input:checked::after {
+  content: '✓';
+  position: absolute;
+  color: rgba(54, 54, 54, 0.824);
+  font-size: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.reset-password-link {
+  color: var(--light-purple);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.reset-password-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: rgb(206, 138, 219);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.reset-password-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.reset-password-link:hover {
+  color: rgb(206, 138, 219);
+}
+
+/* Social Login */
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  color: rgb(232, 232, 232);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn::before {
+  content: ''; 
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+/* Specific styling if we had icons 1*/
+/* For now using pseudo elements for visual differentiation */
+
+.social-btn:hover {
+  background: var(--hover-color);
+  color: white;
+  /* transform: translateY(-3px); */
+  box-shadow: 0 0 10px rgba(132, 240, 240, 0.5);
+}
+
+/* Right Panel - Welcome */
+.welcome-panel {
+  position: relative;
+  background-color: rgba(194, 63, 255, 0.366);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+}
+
+.glass-overlay {
+  position: absolute;
+  inset: 0;
+  /* Extra gloss */
+  background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
+/* Rainbow Arc Decoration */
+.rainbow-arc {
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 1;
+}
+
+/* Top Navigation */
+.top-nav {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 20;
+}
+
+.nav-btn {
+  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.menu-btn {
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.3s;
+}
+
+.menu-btn span {
+  width: 20px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.menu-btn:hover span:nth-child(2) {
+  width: 14px;
+}
+
+/* Welcome Content */
+.welcome-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 400px;
+}
+
+.welcome-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.1;
+
+  color: whitesmoke;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+.stay-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.1;
+
+  color: var(--dark-purple);
+  filter: drop-shadow(0 4px 6px rgba(255, 255, 255, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  /* min-height: 80px; */
+}
+
+@media (max-width: 1024px) {
+  .welcome-title {
+    font-size: 3rem;
+  }
+}
+
+.welcome-text {
+  color: rgb(55, 55, 55);
+  font-size: 1.125rem;
+  margin: 0 0 2rem 0;
+  font-weight: 00;
+  letter-spacing: 0.5px;
+}
+
+.welcome-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(58, 58, 58, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.welcome-link:hover {
+  background: rgba(130, 26, 200, 0.5);
+  transform: translateY(-3px);
+}
+
+.welcome-link svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s;
+}
+
+.welcome-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* Bottom Gradient */
+.bottom-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
+  pointer-events: none;
+}
